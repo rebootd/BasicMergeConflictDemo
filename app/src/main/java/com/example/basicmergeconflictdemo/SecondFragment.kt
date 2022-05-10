@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.basicmergeconflictdemo.databinding.FragmentSecondBinding
+import com.example.basicmergeconflictdemo.viewmodels.SecondViewModel
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -14,6 +16,7 @@ import com.example.basicmergeconflictdemo.databinding.FragmentSecondBinding
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
+    private val viewModel: SecondViewModel by viewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,7 +27,9 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentSecondBinding.inflate(inflater, container, false).apply {
+            model = viewModel
+        }
         return binding.root
 
     }
